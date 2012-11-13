@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'home',  
     'music',
+    'utils',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -156,3 +157,13 @@ LOGGING = {
         },
     }
 }
+
+# Custom Settings
+
+# ENMFP fingerprint generator
+CODEGEN_ROOT ="/home/vikesh/development/portfolio/utils/enmfp/"
+
+# Echonest API
+ECHONEST_IDENTIFY_ROOT = "http://developer.echonest.com/api/v4/song/identify"
+ECHONEST_API_KEY = "GWCMFFXG9ABQ5OO5I"
+

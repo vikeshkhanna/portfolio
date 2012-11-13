@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404, get_list_or_
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import RequestContext
 from music.models import *
-from utils.echonest import identify
+from portfolio.settings import *
 
 import json
 import urllib
@@ -47,26 +47,9 @@ def status(request):
 		code = request.GET["code"] 
 	else:
 		pass #TODO: Return Bad HTTP Method
-	
-	# Code is available. GET Echonest Identify API
+
 	if code:
-		response = {}
-		echonest_response = identify(code)	
-		songs = echonest_response['response']['songs']
-		response['songs'] = []
-		
-		for song in songs:
-			id = song['id']
-			found = 'no'
-			
-			try:
-				dbsong = Song.objects.get(pid=id)
-				found = 'yes'
-			except ObjectDoesNotExist:
-				pass		
-			response['songs'].append({'title': song['title'], 'artist_name':song['artist_name'], 'found':found})
-		
-		return HttpResponse(json.dumps(response))	
+		print ECHONEST_API_KEY		
 	else:
 		pass #TODO: Return Bad paramters sent
 	return HttpResponse("Hello")
